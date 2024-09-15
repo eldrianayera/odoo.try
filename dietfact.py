@@ -24,8 +24,15 @@ class Dietfacts_res_users_meal(models.Model) :
     name = fields.Char('Meal name')
     meal_date = fields.Datetime('Meal Date')
     item_ids = fields.One2many('res.users.mealitem' , 'meal_id')
-    user_id = fields.Many2one('res.users','Meal USer')
+    user_id = fields.Many2one('res.users','Meal User')
+    largemeal = fields.Boolean('Large Meal')
 
+    @api.onchange('totalcalories')
+    def check_totalcalories(self):
+        if self.totalcalories > 500 :
+            self.largemeal = True
+        else :
+            self.largemeal = False
 
     @api.depends('item_ids' , 'item_ids.servings')
 
