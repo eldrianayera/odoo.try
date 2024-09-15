@@ -60,7 +60,7 @@ class Dietfacts_product_nutrient(models.Model) :
     description = fields.Text('Description')
 
 class Dietfacts_product_template_nutrient(models.Model) :
-    _name = 'product.template..nutrient'
+    _name = 'product.template.nutrient'
     nutrient_id = fields.Many2one('product.nutrient' , string='Product Nutrient')
     product_id = fields.Many2one('product.template')
     uom = fields.Char(related='nutrient_id.uom.id.name' , string = 'UOM' , readonly = True)

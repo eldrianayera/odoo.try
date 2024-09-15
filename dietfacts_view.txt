@@ -1,0 +1,4 @@
+REPORT
+
+<report_id='product.nutrition'>
+    <t t-call='report.html_container'>
