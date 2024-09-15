@@ -7,6 +7,7 @@ class Dietfacts_product_template(models.Model) :
     calories = fields.Integer('Calories')
     servingsize = fields.Float('Serving Size')
     lastupdated = fields.Datetime('Last updated')
+    nutrient_ids = fields.One2many('product.template.nutrient','product_id','Nutrients')
 
 class Dietfacts_res_users_meal(models.Model) :
     _name = 'res.users.meal'
@@ -45,5 +46,6 @@ class Dietfacts_product_template_nutrient(models.Model) :
     _name = 'product.template..nutrient'
     nutrient_id = fields.Many2one('product.nutrient' , string='Product Nutrient')
     product_id = fields.Many2one('product.template')
+    uom = fields.String(related='nutrient_id.name' , string = 'UOM' , readonly = True)
     value = fields.Float('Nutrient Value')
     dailypercent = fields.Float('Daily recommended Value')
