@@ -6,7 +6,7 @@ class Dietfacts_product_template(models.Model) :
 
     calories = fields.Integer('Calories')
     servingsize = fields.Float('Serving Size')
-    lastupdated = fields.Datetime('Serving Size')
+    lastupdated = fields.Datetime('Last updated')
 
 class Dietfacts_res_users_meal(models.Model) :
     _name = 'res.users.meal'
@@ -16,12 +16,12 @@ class Dietfacts_res_users_meal(models.Model) :
     user_id = fields.Many2one('res.users','Meal USer')
 
     @api.one
-    @api.depends('item_ids' , 'item.id.servings')
+    @api.depends('item_ids' , 'item_ids.servings')
 
     def _calccalories(self):
         currentcalories = 0
         for mealitem in self.item_ids :
-            currentcalories += mealitem.item_id.calories
+            currentcalories += mealitem.calories * mealitem.servings
         self.totalcalories = currentcalories
 
     totalcalories = fields.Integer(string='Total Calories' , store = True , compute='_calccalories')
