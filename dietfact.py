@@ -34,3 +34,14 @@ class Dietfacts_res_users_mealitem(models.Model) :
     servings = fields.Float('Servings')
     calories = fields.Integer(related='item_id.calories', string='Calories per Serving' , store = True , readonly = True)
     notes = fields.Text('Meal item notes')
+
+class Dietfacts_product_nutrient(models.Model) :
+    _name = 'product.nutrient'
+    name = fields.Char('Nutrient Name')
+    uom_id = fields.Many2one('product.uom','Unit of Measure')
+    description = fields.Text('Description')
+
+class Dietfacts_product_template_nutrient(models.Model) :
+    _name = 'product.template..nutrient'
+    nutrient_id = fields.Many2one('product.nutrient' , string='Product Nutrient')
+    product_id = fields.Many2one
