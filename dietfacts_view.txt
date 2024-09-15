@@ -2,3 +2,23 @@ REPORT
 
 <report_id='product.nutrition'>
     <t t-call='report.html_container'>
+    <t t-foreach='docs' t-as='0'>
+    <t tcall='report.external_layout'>
+    <div class='page'>
+<div class='oe_structure'/>
+<h1>Nutrition Report</h1>
+<h2>Product Name :<span t-field='o.name'/></h2>
+<p>Calories :<span t-field='o.calories'/></p>
+<h3>Nutrition Details</h3>
+<t t-foreach='o.nutrient_ids' t-as='line'>
+<div class='row'>
+<div class='col-xs-6'>
+<span t-field='line.nutrient_id.name'>
+</div>
+<div class='col-xs-2'>
+<span t-field='line.value'>
+</div>
+<div class='col-xs-4'>
+<span t-field='line.nutrient_id.uom_id.name'>
+</div>
+</div>
