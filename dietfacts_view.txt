@@ -22,3 +22,7 @@ REPORT
 <span t-field='line.nutrient_id.uom_id.name'>
 </div>
 </div>
+</t>
+</t>
+</t>
+</report>
