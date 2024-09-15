@@ -15,7 +15,7 @@ class Dietfacts_res_users_meal(models.Model) :
     item_ids = fields.One2many('res.users.mealitem' , 'meal_id')
     user_id = fields.Many2one('res.users','Meal USer')
 
-    @api.one
+
     @api.depends('item_ids' , 'item_ids.servings')
 
     def _calccalories(self):
