@@ -9,6 +9,16 @@ class Dietfacts_product_template(models.Model) :
     lastupdated = fields.Datetime('Last updated')
     nutrient_ids = fields.One2many('product.template.nutrient','product_id','Nutrients')
 
+    @api.depends('nutrient_ids' , 'nutrient_ids.value')
+    def _calcscore(self):
+        currentscore = 0
+        for nutrient in self.nutrient_ids :
+            currentscore += nutrient.value
+        self.nutrient_score = currentscore
+
+
+    nutrition_score = fields.Float(string='Nutrition Score', compute='_calcscore' , store = True)
+
 class Dietfacts_res_users_meal(models.Model) :
     _name = 'res.users.meal'
     name = fields.Char('Meal name')
