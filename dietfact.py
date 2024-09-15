@@ -44,4 +44,6 @@ class Dietfacts_product_nutrient(models.Model) :
 class Dietfacts_product_template_nutrient(models.Model) :
     _name = 'product.template..nutrient'
     nutrient_id = fields.Many2one('product.nutrient' , string='Product Nutrient')
-    product_id = fields.Many2one
+    product_id = fields.Many2one('product.template')
+    value = fields.Float('Nutrient Value')
+    dailypercent = fields.Float('Daily recommended Value')
